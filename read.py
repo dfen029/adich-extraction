@@ -18,8 +18,9 @@ else:
 
 #Test Code:
 import adi
+# the directectory below would need to be changed for each computer / different directory name
 f = adi.read_file(r'C:\Users\dahli\OneDrive\Documents\ECG summer project 2021-2022\adinstruments_sdk_python-master\4 mice_11-04-2017 7;49;00.4 p.m..adicht')
-channel_id = 2
+channel_id = 3
 c = f.channels[channel_id-1]
 record_id = 1
 data = f.channels[1].get_data(record_id)
