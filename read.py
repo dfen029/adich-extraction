@@ -19,14 +19,27 @@ else:
 #Test Code:
 import adi
 # the directectory below would need to be changed for each computer / different directory name
-f = adi.read_file(r'C:\Users\dahli\OneDrive\Documents\ECG summer project 2021-2022\adinstruments_sdk_python-master\4 mice_11-04-2017 7;49;00.4 p.m..adicht')
-channel_id = 3
-c = f.channels[channel_id-1]
-record_id = 1
-data = f.channels[1].get_data(record_id)
-import matplotlib.pyplot as plt
-plt.plot(data)
-plt.show()
+f = adi.read_file(r'C:\Users\dahli\OneDrive\Documents\ECG-summer-project-2021-2022\adinstruments_sdk_python-master\4 mice_11-04-2017 7;49;00.4 p.m..adicht')
+
+# loop to see how many arrays of data there are, and create empty array of same length
+n=1
+for j in range(20):
+    try:
+        channel_id = n
+        c = f.channels[channel_id-1]
+        n +=1
+    except IndexError:
+        break
+
+data = [0]*(n-1)
+
+# put all data arrays into array
+for i in range(1,n):
+    channel_id = i
+    c = f.channels[channel_id-1]
+    record_id = 1
+    data[i-1] = f.channels[i-1].get_data(record_id)
+
 
 
 def read_file(file_path):
